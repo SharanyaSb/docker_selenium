@@ -3,6 +3,8 @@ package com.searchmodule.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.LocalFileDetector;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -52,7 +54,13 @@ public class SearchPage {
         By by = By.className("tile--vid");
         this.wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(by, 0));
         System.out.println("Search Result : " + this.allVideos.size());
-        return this.allVideos.size();
+        return this.allVideos.size();      		 
+    }
+    
+    public void fileupload(){
+    	//assuming driver is the name of the variable for WebDriver instance     	        
+  	  if(driver instanceof RemoteWebDriver){ ((RemoteWebDriver)
+      		  driver).setFileDetector(new LocalFileDetector()); }
     }
 
 
